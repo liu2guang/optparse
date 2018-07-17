@@ -65,7 +65,7 @@ int main(int argc, char **argv)
             delay = optarg ? atoi(optarg) : 1;
             break;
         case '?':
-            exit(EXIT_FAILURE);
+            return EXIT_FAILURE;
         }
     }
 
@@ -76,7 +76,7 @@ int main(int argc, char **argv)
 }
 ~~~
 
-如果使用optparse, 同样的功能将使用如下的代码的实现: 
+如果使用optparse在RTT下解析, 同样的功能将使用如下的代码的实现: 
 
 ~~~c
 #include <stdio.h>
@@ -84,7 +84,7 @@ int main(int argc, char **argv)
 #include <stdbool.h>
 #include "optparse.h"
 
-int main(int argc, char **argv)
+int cmd_parse(int argc, char **argv)
 {
     bool amend = false;
     bool brief = false;
@@ -112,7 +112,7 @@ int main(int argc, char **argv)
             break;
         case '?':
             fprintf(stderr, "%s: %s\n", argv[0], options.errmsg);
-            exit(EXIT_FAILURE);
+            return EXIT_FAILURE;
         }
     }
 
@@ -121,6 +121,7 @@ int main(int argc, char **argv)
         printf("%s\n", arg);
     return 0;
 }
+MSH_CMD_EXPORT(cmd_parse, cmd description);
 ~~~
 
 这是optparse对长选项参数的支持: 
@@ -167,7 +168,7 @@ int main(int argc, char **argv)
             break;
         case '?':
             fprintf(stderr, "%s: %s\n", argv[0], options.errmsg);
-            exit(EXIT_FAILURE);
+            return EXIT_FAILURE;
         }
     }
 

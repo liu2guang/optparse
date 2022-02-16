@@ -1,5 +1,5 @@
-#include "optparse.h"
-#include "finsh.h"
+#include <optparse.h>
+#include <finsh.h>
 
 int optparse_short_test(int argc, char **argv)
 {

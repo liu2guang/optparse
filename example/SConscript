@@ -1,20 +1,7 @@
-import os
 from building import * 
 
-# get current dir path
-cwd = GetCurrentDir()
+src = ['optparse_demo.c']
 
-# init src and inc vars
-src = []
-inc = []
-
-# add optparse common include
-inc = inc + [cwd]
-
-# add optparse basic code
-src = src + Glob('./*.c')
-
-# add group to IDE project
-objs = DefineGroup('optparse', src, depend = ['OPTPARSE_USING_DEMO'], CPPPATH = inc)
+objs = DefineGroup('optparse', src, depend = ['OPTPARSE_USING_DEMO'])
 
 Return('objs')

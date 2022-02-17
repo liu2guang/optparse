@@ -5,14 +5,8 @@ from building import *
 cwd = GetCurrentDir()
 
 # init src and inc vars
-src = []
-inc = []
-
-# add getparse common include
-inc = inc + [cwd]
-
-# add getparse basic code
-src = src + Glob('./*.c')
+src = Glob('*.c')
+inc = [cwd]
 
 # add group to IDE project
 group = DefineGroup('optparse', src, depend = ['PKG_USING_OPTPARSE'], CPPPATH = inc)

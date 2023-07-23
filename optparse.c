@@ -135,8 +135,9 @@ static int optparse_long_fallback(struct optparse *options,
     return result;
 }
 
-void optparse_init(struct optparse *options, char **argv)
+void optparse_init(struct optparse *options, int argc, char **argv)
 {
+    options->argc = argc;
     options->argv = argv;
     options->permute = 1;
     options->optind = argv[0] != 0;
@@ -153,7 +154,7 @@ int optparse(struct optparse *options, const char *optstring)
     options->errmsg[0] = '\0';
     options->optopt = 0;
     options->optarg = 0;
-    if (option == 0)
+    if ((options->optind>= options->argc) || option == 0)
     {
         return -1;
     }

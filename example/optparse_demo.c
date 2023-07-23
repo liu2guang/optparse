@@ -6,7 +6,7 @@ int optparse_short_test(int argc, char **argv)
     int ch;
     struct optparse options;
 
-    optparse_init(&options, argv);
+    optparse_init(&options, argc, argv);
     while((ch = optparse(&options, "ab:c::")) != -1)
     {
         ch = ch;
@@ -36,7 +36,7 @@ int optparse_long_test(int argc, char **argv)
     int option_index;
     struct optparse options;
 
-    optparse_init(&options, argv);
+    optparse_init(&options, argc, argv);
     while((ch = optparse_long(&options, long_opts, &option_index)) != -1)
     {
         ch = ch;
